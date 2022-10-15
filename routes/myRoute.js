@@ -11,6 +11,9 @@ router.route('/')
  router.route('/signup')
   .post(myController.createUser);
 
+router.route('/login')
+  .post(myController.loginUser);
+
   router.route('/getall')
   .get(myController.getAll);
 

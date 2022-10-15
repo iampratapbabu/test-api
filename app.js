@@ -3,6 +3,7 @@ const morgan = require('morgan');
 
 //routes
 const myRouter = require("./routes/myRoute");
+const courseRouter = require("./routes/courseRoute");
 
 const app=express();
 app.use(express.json());
@@ -29,5 +30,7 @@ app.get('/',(req,res)=>{
 //all route files
 app.use('/test',myRouter);
 app.use('/user',myRouter);
+
+app.use('/api/courses',courseRouter);
 
 module.exports = app;

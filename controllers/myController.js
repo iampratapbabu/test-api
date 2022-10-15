@@ -49,6 +49,32 @@ exports.createUser = async(req,res) =>{
   }
 }
 
+exports.loginUser = async(req,res) =>{
+  try{
+    const user = await User.findOne({email:req.body.userid});
+    if(!user){
+      res.status(403).json({
+        "msg":"user not found"
+      })
+    }
+    else if(user.password == req.body.password){
+      res.status(200).json({
+        "status":"success",
+        "msg":"user logged in successfully"
+      })
+
+    }else{
+      res.json({"msg":"Credentials invalid"});
+    }
+
+  }catch(err){
+    res.status(500).json({
+      "status":"error",
+      "err message":err
+    })
+  }
+}
+
 exports.getAll = async(req,res)=>{
   try{
     const user = await User.find();
@@ -62,7 +88,7 @@ exports.getAll = async(req,res)=>{
       "error msg":err.message
     });
   }
- 
+
 
 }
 
